@@ -21,12 +21,16 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  grunt.loadNpmTasks('grunt-war');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+
+
     // Project settings
     yeoman: appConfig,
-
+    
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
@@ -386,7 +390,26 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
+    },
+
+    build_dir: 'dist',
+    //Build a WAR (web archive) without Maven or the JVM installed.
+    war: {
+      target: {
+        options: {
+          war_dist_folder: 'dist',    /* Folder where to generate the WAR. */
+          war_name: 'ewsapp'                    /* The name fo the WAR file (.war will be the extension) */
+        },
+        files: [
+          {
+            expand: true,
+            cwd: 'dist',
+            src: ['**'],
+            dest: ''
+          }
+        ]
+      }
+    },
   });
 
 
