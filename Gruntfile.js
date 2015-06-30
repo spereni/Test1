@@ -392,13 +392,13 @@ module.exports = function (grunt) {
       }
     },
 
-    build_dir: 'dist',
     //Build a WAR (web archive) without Maven or the JVM installed.
+    /*jshint camelcase: false */
     war: {
       target: {
         options: {
           war_dist_folder: 'dist',    /* Folder where to generate the WAR. */
-          war_name: 'ewsapp'                    /* The name fo the WAR file (.war will be the extension) */
+          war_name: 'ewsapp'          /* The name fo the WAR file (.war will be the extension) */
         },
         files: [
           {
@@ -462,6 +462,7 @@ module.exports = function (grunt) {
   grunt.registerTask('default', [
     'newer:jshint',
     'test',
-    'build'
+    'build',
+    'war'
   ]);
 };
